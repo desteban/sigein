@@ -1,0 +1,48 @@
+{
+  "Sample Page": "Página de muestra",
+  "Menu Level": "Nivel del menú",
+  "Level 1": "Nivel 1",
+  "Level 2": "Nivel 2",
+  "Level 3": "Nivel 3",
+  "Disabled": "Deshabilitado",
+  "Sub Caption": "Subtítulo",
+  "Outlined": "Contorneado",
+  "External Link": "Enlace externo",
+  "Chip": "Etiqueta",
+  "users": {
+    "list": {
+      "title": "Usuarios",
+      "subtitle": "Lista de usuarios",
+      "add": "Agregar usuario",
+      "search": "Buscar por nombre o correo electrónico",
+      "edit": "Editar",
+      "delete": "Borrar",
+      "resetPassword": "Restablecer contraseña"
+    },
+    "delete": {
+      "title": "Borrar usaario",
+      "text": "Se borrará el usuario {name}, ¿Está seguro de continuar?",
+      "successMessage": "El usuario {name} ha sido borrado correctamente."
+    },
+    "resetPassword": {
+      "title": "Restablecer contraseña",
+      "text": "Se restablecerá la contraseña del usuario {name}, ¿Está seguro de continuar?",
+      "successMessage": "La contraseña del usuario {name} ha sido restablecida correctamente."
+    }
+  },
+  "roles": {
+    "list": {
+      "title": "Roles",
+      "subtitle": "Lista de roles",
+      "add": "Agregar rol",
+      "search": "Buscar por nombre",
+      "edit": "Editar",
+      "delete": "Borrar"
+    },
+    "delete": {
+      "title": "Borrar rol",
+      "text": "Se borrará el rol {name}, ¿Está seguro de continuar?",
+      "successMessage": "El rol {name} ha sido borrado correctamente."
+    }
+  }
+}

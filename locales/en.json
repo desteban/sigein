@@ -1,0 +1,48 @@
+{
+  "Sample Page": "Sample Page",
+  "Menu Level": "Menu level",
+  "Level 1": "Level 1",
+  "Level 2": "Level 2",
+  "Level 3": "Level 3",
+  "Disabled": "Disabled",
+  "Sub Caption": "Sub Caption",
+  "Outlined": "Outlined",
+  "External Link": "External Link",
+  "Chip": "Chip",
+  "users": {
+    "list": {
+      "title": "Users",
+      "subtitle": "List of Users",
+      "add": "Add User",
+      "search": "Search by name or email",
+      "edit": "Edit",
+      "delete": "Delete",
+      "resetPassword": "Reset Password"
+    },
+    "delete": {
+      "title": "Delete User",
+      "text": "The user {name} will be deleted. Are you sure you want to continue?",
+      "successMessage": "The user {name} has been successfully deleted."
+    },
+    "resetPassword": {
+      "title": "Reset Password",
+      "text": "The password for the user {name} will be reset. Are you sure you want to continue?",
+      "successMessage": "The password for the user {name} has been successfully reset."
+    }
+  },
+  "roles": {
+    "list": {
+      "title": "Roles",
+      "subtitle": "List of Roles",
+      "add": "Add Role",
+      "search": "Search by name",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "delete": {
+      "title": "Delete Role",
+      "text": "The role {name} will be deleted. Are you sure you want to continue?",
+      "successMessage": "The role {name} has been successfully deleted."
+    }
+  }
+}
