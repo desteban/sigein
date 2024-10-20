@@ -13,7 +13,7 @@ import type { Offer } from '~/implementation/classes/Offer'
 export class Person implements IPerson {
   id: number | null
 
-  type: 'natural' | 'legal'
+  type: 'natural' | 'legal' | ''
 
   identification: string | null
 
@@ -59,7 +59,7 @@ export class Person implements IPerson {
 
   constructor(data: Partial<IPerson> = {}) {
     this.id = data.id ?? null
-    this.type = data.type ?? 'natural'
+    this.type = data.type ?? ''
     this.identification = data.identification ?? null
     this.first_name = data.first_name ?? null
     this.second_name = data.second_name ?? null

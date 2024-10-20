@@ -29,7 +29,7 @@
       <v-col
         v-for="(person, personIndex) in persons"
         :key="`person${personIndex}`"
-        cols="12"
+        cols="6"
       >
         <v-card class="rounded-lg">
           <v-img
@@ -38,7 +38,7 @@
             cover
           />
           <v-list>
-            <v-list-item>
+            <v-list-item :href="`/profile/${person.id}/info`">
               <template #prepend>
                 <v-avatar color="grey">
                   <v-img
@@ -59,8 +59,8 @@
             </v-list-item>
           </v-list>
           <v-divider class="ma-0" />
-          <v-card-text>
-            {{ cutText(person?.profile?.biography ?? '', 320) }}
+          <v-card-text v-if="person?.profile?.biography">
+            {{ cutText(person.profile.biography, 320) }}
           </v-card-text>
           <v-card-actions>
             <v-btn
@@ -68,7 +68,8 @@
               color="primary"
               class="text-capitalize"
             >
-              Ver perfil
+              <v-icon icon="mdi-account-plus-outline" class="mr-1" size="22" />
+              Conectar
             </v-btn>
           </v-card-actions>
         </v-card>

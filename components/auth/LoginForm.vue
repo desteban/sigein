@@ -6,7 +6,7 @@
   /* Social icons */
   import google from '@/assets/images/svgs/google-icon.svg'
   import facebook from '@/assets/images/svgs/facebook-icon.svg'
-  
+
   const localePath = useLocalePath()
   const authStore = useAuthStore()
   const { snackbar } = useSnackbar()
@@ -30,7 +30,7 @@
           .then(() => {
             router.push(localePath('/'))
           })
-          .catch((error:Error) => snackbar({ type: 'error', error }))
+          .catch((error: Error) => snackbar({ type: 'error', error }))
           .finally(() => {
             loading.value = false
           })

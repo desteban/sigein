@@ -1,8 +1,8 @@
 import type { IUser } from '@/implementation/interfaces/IUser.ts'
 import type { IRole } from '@/implementation/interfaces/IRole.ts'
 import type { IPermission } from '@/implementation/interfaces/IPermission.ts'
-import type { IPerson } from "~/implementation/interfaces/IPerson";
-import { Person } from "~/implementation/classes/Person";
+import type { IPerson } from '~/implementation/interfaces/IPerson'
+import { Person } from '~/implementation/classes/Person'
 
 export class User implements IUser {
   id: number | null
@@ -22,7 +22,7 @@ export class User implements IUser {
   created_at: string | null
 
   updated_at: string | null
-  
+
   person: IPerson
 
   roles: IRole[]

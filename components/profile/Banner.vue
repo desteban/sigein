@@ -89,27 +89,38 @@
     {
       tab: 'Profile',
       icon: 'mdi-account-box-outline',
-      href: `/profile/${person.value.id}/info`
+      href: `/profile/${person.value.id}/info`,
+      visible: true
     },
     {
       tab: 'Work Experience',
       icon: 'mdi-account-tie',
-      href: `/profile/${person.value.id}/work-experience`
+      href: `/profile/${person.value.id}/work-experience`,
+      visible: true
     },
     {
       tab: 'Education',
       icon: 'mdi-school-outline',
-      href: `/profile/${person.value.id}/education`
+      href: `/profile/${person.value.id}/education`,
+      visible: person.value.type === 'natural'
     },
     {
       tab: 'Economic Activities',
       icon: 'mdi-clipboard-check-multiple-outline',
-      href: `/profile/${person.value.id}/economic-activities`
+      href: `/profile/${person.value.id}/economic-activities`,
+      visible: true
     },
     {
       tab: 'Offers',
       icon: 'mdi-briefcase-outline',
-      href: `/profile/${person.value.id}/offers`
+      href: `/profile/${person.value.id}/offers`,
+      visible: true
+    },
+    {
+      tab: 'Our Team',
+      icon: 'mdi-account-group-outline',
+      href: `/profile/${person.value.id}/our-team`,
+      visible: person.value.type === 'legal'
     }
   ])
 
@@ -250,7 +261,7 @@
             class="profiletab bg-grey100"
           >
             <v-tab
-              v-for="item in items"
+              v-for="item in items.filter(item => item.visible)"
               :key="item.tab"
               :to="localePath(item.href)"
             >

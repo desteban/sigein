@@ -11,9 +11,13 @@
   const localePath = useLocalePath()
   const authStore = useAuthStore()
   const { snackbar } = useSnackbar()
+  const { getImageByName } = useTypes()
   const router = useRouter()
 
   const user = computed(() => authStore.user)
+  const avatarImage: ComputedRef<string> = computed(
+    () => user.value?.person?.profile?.avatar || getImageByName('defaultUser')
+  )
 
   const loading = ref(false)
   const ProfileHeader: ComputedRef<IProfile[]> = computed(() => [
@@ -54,17 +58,17 @@
     <template #activator="{ props }">
       <v-btn class="custom-hover-primary" variant="text" v-bind="props" icon="">
         <v-avatar size="35">
-          <img src="~/assets/images/profile/user2.jpg" width="35" alt="Julia" />
+          <img :src="avatarImage" width="35" alt="Avatar User" />
         </v-avatar>
       </v-btn>
     </template>
     <v-sheet rounded="md" width="360" elevation="10">
-      <div class="px-8 pt-6">
+      <div class="px-6 pt-6">
         <h6 class="text-h5 font-weight-medium">User Profile</h6>
         <v-list-item class="px-0 my-2">
           <template #prepend>
-            <v-avatar size="80">
-              <img src="~/assets/images/profile/user2.jpg" width="80" />
+            <v-avatar size="70">
+              <img :src="avatarImage" width="70" alt="Avatar User" />
             </v-avatar>
           </template>
           <v-list-item-title class="text-h6 mb-n1 font-weight-medium">

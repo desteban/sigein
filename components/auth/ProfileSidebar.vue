@@ -2,9 +2,24 @@
   const localePath = useLocalePath()
   const authStore = useAuthStore()
   const { snackbar } = useSnackbar()
+  const { getImageByName } = useTypes()
   const router = useRouter()
 
   const user = computed(() => authStore.user)
+  const headerImage: ComputedRef<string> = computed(
+    () =>
+      user.value?.person?.profile?.header_image ||
+      getImageByName('defaultBanner')
+  )
+  const avatarImage: ComputedRef<string> = computed(
+    () => user.value?.person?.profile?.avatar || getImageByName('defaultUser')
+  )
+  const dynamicBackground = computed(() => {
+    return {
+      background: `url(${headerImage.value}) no-repeat`,
+      backgroundSize: 'cover'
+    }
+  })
 
   const loading = ref(false)
 
@@ -23,10 +38,10 @@
 </script>
 
 <template>
-  <div class="profile">
+  <div class="profile" :style="dynamicBackground">
     <div class="profile-pic profile-pic py-7 px-3">
       <v-avatar size="45">
-        <img src="~/assets/images/profile/user2.jpg" width="50" alt="Julia" />
+        <img :src="avatarImage" width="50" alt="Avatar User" />
       </v-avatar>
     </div>
     <div class="profile-name d-flex align-center px-3">

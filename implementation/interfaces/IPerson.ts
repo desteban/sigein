@@ -9,7 +9,7 @@ import type { Offer } from '~/implementation/classes/Offer'
 
 export interface IPerson {
   id: number | null
-  type: 'natural' | 'legal'
+  type: 'natural' | 'legal' | ''
   identification: string | null
   first_name: string | null
   second_name: string | null
