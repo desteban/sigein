@@ -1,16 +1,16 @@
 <script setup lang="ts">
   import { ref, watch } from 'vue'
-  import LanguageDD from './LanguageDD.vue'
+  // import LanguageDD from './LanguageDD.vue'
   import NotificationDD from './NotificationDD.vue'
   import ProfileHeader from '~/components/auth/ProfileHeader.vue'
-  import Searchbar from './Searchbar.vue'
+  // import Searchbar from './Searchbar.vue'
   import Logo from '../logo/Logo.vue'
   import LogoIcon from '../logo/LogoIcon.vue'
   import RightMobileSidebar from './RightMobileSidebar.vue'
 
   const customizer = useCustomizerStore()
   // const showSearch = ref(false)
-  const appsDrawer = ref(false)
+  const appsDrawer = ref(true)
   const priority = ref(customizer.setHorizontalLayout ? 0 : 0)
   // function searchbox() {
   //   showSearch.value = !showSearch.value
@@ -23,38 +23,44 @@
 <template>
   <v-app-bar elevation="5" :priority="priority" height="64" color="primary">
     <div class="pt-2 d-sm-flex d-none">
-      <Logo />
+      <Logo style="width: 140px" />
     </div>
     <div class="pt-2 pr-2 d-sm-none d-flex">
-      <LogoIcon />
+      <LogoIcon style="width: 40px" />
     </div>
     <v-btn
-      class="hidden-md-and-down"
       icon=""
       color="primary"
       variant="text"
-      @click.stop="customizer.SET_MINI_SIDEBAR(!customizer.mini_sidebar)"
+      @click.stop="appsDrawer = !appsDrawer"
     >
-      <v-icon icon="mdi-menu" size="26" />
+      <v-icon icon="mdi-apps" size="26" />
     </v-btn>
-    <v-btn
-      class="hidden-lg-and-up"
-      icon=""
-      variant="text"
-      size="small"
-      @click.stop="customizer.SET_SIDEBAR_DRAWER"
-    >
-      <v-icon icon="mdi-menu" size="26" />
-    </v-btn>
+    <!--    <v-btn-->
+    <!--      class="hidden-md-and-down"-->
+    <!--      icon=""-->
+    <!--      color="primary"-->
+    <!--      variant="text"-->
+    <!--      @click.stop="customizer.SET_MINI_SIDEBAR(!customizer.mini_sidebar)"-->
+    <!--    >-->
+    <!--      <v-icon icon="mdi-menu" size="26" />-->
+    <!--    </v-btn>-->
+    <!--    <v-btn-->
+    <!--      class="hidden-lg-and-up"-->
+    <!--      icon=""-->
+    <!--      variant="text"-->
+    <!--      size="small"-->
+    <!--      @click.stop="customizer.SET_SIDEBAR_DRAWER"-->
+    <!--    >-->
+    <!--      <v-icon icon="mdi-menu" size="26" />-->
+    <!--    </v-btn>-->
 
     <!-- ---------------------------------------------- -->
     <!-- Search part -->
     <!-- ---------------------------------------------- -->
 
-    <Searchbar />
+    <!--    <Searchbar />-->
     <v-spacer />
-    
-    <GeneralNavigation />
 
     <!---/Search part -->
 
@@ -64,7 +70,7 @@
     <!-- <div class="hidden-md-and-down">
             <Navigations />
         </div> -->
-    <v-spacer />
+    <!--    <v-spacer />-->
     <!-- ---------------------------------------------- -->
     <!---right part -->
     <!-- ---------------------------------------------- -->
@@ -72,25 +78,27 @@
     <!-- translate -->
     <!-- ---------------------------------------------- -->
 
-    <LanguageDD />
-    
+    <!--    <LanguageDD />-->
+
     <v-btn
       icon
       variant="text"
       color="primary"
-      @click.stop="customizer.SET_CUSTOMIZER_DRAWER(!customizer.Customizer_drawer)"
+      @click.stop="
+        customizer.SET_CUSTOMIZER_DRAWER(!customizer.Customizer_drawer)
+      "
     >
       <v-icon icon="mdi-palette-outline" size="26" />
     </v-btn>
-    
+
     <!-- ---------------------------------------------- -->
     <!-- ShoppingCart -->
     <!-- ---------------------------------------------- -->
-    <v-btn icon variant="text" class="ml-1" color="primary" to="">
-      <v-badge color="error" :content="0">
-        <v-icon size="24">mdi-cart</v-icon>
-      </v-badge>
-    </v-btn>
+    <!--    <v-btn icon variant="text" class="ml-1" color="primary" to="">-->
+    <!--      <v-badge color="error" :content="0">-->
+    <!--        <v-icon size="24">mdi-cart</v-icon>-->
+    <!--      </v-badge>-->
+    <!--    </v-btn>-->
 
     <!-- ---------------------------------------------- -->
     <!-- Notification -->
@@ -107,7 +115,12 @@
   <!-- ---------------------------------------------- -->
   <!-- Right Sidebar -->
   <!-- ---------------------------------------------- -->
-  <v-navigation-drawer v-model="appsDrawer" location="right" temporary>
+  <v-navigation-drawer
+    v-model="appsDrawer"
+    location="left"
+    temporary
+    width="320"
+  >
     <RightMobileSidebar />
   </v-navigation-drawer>
 </template>

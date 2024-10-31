@@ -2,14 +2,12 @@
   import { ref } from 'vue'
   import type { FormContext } from 'vee-validate'
   import { useRouter } from 'vue-router'
-
-  /* Social icons */
-  import google from '@/assets/images/svgs/google-icon.svg'
-  import facebook from '@/assets/images/svgs/facebook-icon.svg'
+  import { useDisplay } from 'vuetify'
 
   const localePath = useLocalePath()
   const authStore = useAuthStore()
   const { snackbar } = useSnackbar()
+  const { xs } = useDisplay()
   const router = useRouter()
   const checkbox = ref(false)
   const loading = ref(false)
@@ -28,7 +26,7 @@
             remember_me: checkbox.value
           })
           .then(() => {
-            router.push(localePath('/'))
+            router.push('/')
           })
           .catch((error: Error) => snackbar({ type: 'error', error }))
           .finally(() => {
@@ -40,44 +38,18 @@
 </script>
 
 <template>
-  <v-row class="d-flex mb-3">
-    <v-col cols="6" sm="6" class="pr-2">
-      <v-btn
-        variant="outlined"
-        size="large"
-        class="border text-subtitle-1"
-        block
-      >
-        <img :src="google" height="16" class="mr-2" alt="google" />
-        <span class="d-sm-flex d-none mr-1">Sign in with</span>Google
-      </v-btn>
-    </v-col>
-    <v-col cols="6" sm="6" class="pl-2">
-      <v-btn
-        variant="outlined"
-        size="large"
-        class="border text-subtitle-1"
-        block
-      >
-        <img
-          :src="facebook"
-          width="25"
-          height="25"
-          class="mr-1"
-          alt="facebook"
-        />
-        <span class="d-sm-flex d-none mr-1">Sign in with</span>FB
-      </v-btn>
-    </v-col>
-  </v-row>
   <div class="d-flex align-center text-center mb-6">
     <div
       class="text-h6 w-100 px-5 font-weight-regular auth-divider position-relative"
     >
-      <span class="bg-surface px-5 py-3 position-relative"
-        >or sign in with</span
-      >
+      <span class="bg-surface px-5 py-3 position-relative">¡Bienvenido!</span>
     </div>
+  </div>
+  <div
+    class="d-flex align-center text-center mb-6"
+    :style="`max-width:${!xs ? '400px' : '100%'}`"
+  >
+    Por favor, ingresa tus credenciales a continuación para acceder a tu cuenta.
   </div>
   <VeeForm ref="defaultForm" class="mt-5" @submit="login">
     <InputText

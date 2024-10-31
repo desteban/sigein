@@ -3,19 +3,19 @@
   const authStore = useAuthStore()
   const customizerStore = useCustomizerStore()
   const user = computed(() => authStore.user)
-  
-  // if (user.value) {
-  //   setLocale(user.value.language)
-  //   customizerStore.language = locale.value
-  // } else {
-  //   setLocale(customizerStore.language)
-  // }
+
+  if (user.value) {
+    setLocale(user.value.language)
+    customizerStore.language = locale.value
+  } else {
+    setLocale(customizerStore.language)
+  }
 </script>
 
 <template>
   <NuxtLayout>
     <Head>
-      <Title>PLACOEM</Title>
+      <Title>SIGEIN</Title>
     </Head>
     <NuxtPage />
     <Snackbar />

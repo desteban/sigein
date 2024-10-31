@@ -1,27 +1,27 @@
 <script setup lang="ts">
   import Logo from '@/layouts/full/logo/LogoDark.vue'
   import LoginForm from '@/components/auth/LoginForm.vue'
-  
-  const localePath = useLocalePath()
+
+  // const localePath = useLocalePath()
   definePageMeta({
-    layout: 'blank',
+    layout: 'blank'
   })
 </script>
 
 <template>
-  <div class="pa-3">
-    <v-row class="h-100vh mh-100 auth">
+  <div>
+    <v-row no-gutters class="h-100vh mh-100 auth">
       <v-col
         cols="12"
         lg="7"
         xl="8"
         class="d-lg-flex align-center justify-center authentication position-relative"
       >
-        <div class="auth-header pt-lg-6 pt-2 px-sm-6 px-3 pb-lg-6 pb-0">
-          <div class="position-relative">
-            <Logo />
-          </div>
-        </div>
+        <!--        <div class="auth-header pt-lg-6 pt-2 px-sm-6 px-3 pb-lg-6 pb-0">-->
+        <!--          <div class="position-relative">-->
+        <!--            <Logo />-->
+        <!--          </div>-->
+        <!--        </div>-->
         <div class="">
           <img
             src="@/assets/images/backgrounds/login-bg.svg"
@@ -37,20 +37,21 @@
         class="d-flex align-center justify-center bg-surface"
       >
         <div class="mt-xl-0 mt-5 mw-100">
-          <h2 class="text-h3 mb-2">Welcome to Modernize</h2>
-          <div class="text-subtitle-1 mb-6">Your Admin Dashboard</div>
+          <div class="d-flex justify-center mb-6">
+            <Logo style="width: 300px" />
+          </div>
           <LoginForm />
-          <h6 class="text-h6 d-flex align-center mt-6 font-weight-medium">
-            New to Modernize?
-            <v-btn
-              class="pl-0 text-primary text-body-1 opacity-1 pl-2 font-weight-medium"
-              height="auto"
-              :to="localePath('/auth/register')"
-              variant="plain"
-            >
-              Create an account
-            </v-btn>
-          </h6>
+          <!--          <h6 class="text-h6 d-flex align-center mt-6 font-weight-medium">-->
+          <!--            New to Modernize?-->
+          <!--            <v-btn-->
+          <!--              class="pl-0 text-primary text-body-1 opacity-1 pl-2 font-weight-medium"-->
+          <!--              height="auto"-->
+          <!--              :to="localePath('/auth/register')"-->
+          <!--              variant="plain"-->
+          <!--            >-->
+          <!--              Create an account-->
+          <!--            </v-btn>-->
+          <!--          </h6>-->
         </div>
       </v-col>
     </v-row>

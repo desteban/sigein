@@ -1,34 +1,41 @@
-import type { IProfile } from '~/implementation/interfaces/IProfile'
-import type { IType } from '~/implementation/interfaces/IType'
-import type { ILocationInfo } from '~/implementation/interfaces/ILocationInfo'
-import type { IWorkExperience } from '~/implementation/interfaces/IWorkExperience'
-import type { IEducation } from '~/implementation/interfaces/IEducation'
-import type { IPersonEconomicActivity } from '~/implementation/interfaces/IPersonEconomicActivity'
 import type { IUser } from '~/implementation/interfaces/IUser'
-import type { Offer } from '~/implementation/classes/Offer'
+import type { IIdentificationType } from '~/implementation/interfaces/IIdentificationType'
+import type { IHousehold } from '~/implementation/interfaces/IHousehold'
+import type { IRelationship } from '~/implementation/interfaces/IRelationship'
+import type { ICie10 } from '~/implementation/interfaces/ICie10'
+import type { ISectorType } from '~/implementation/interfaces/ISectorType'
+import type { ISector } from '~/implementation/interfaces/ISector'
 
 export interface IPerson {
   id: number | null
-  type: 'natural' | 'legal' | ''
-  identification: string | null
   first_name: string | null
-  second_name: string | null
-  first_last_name: string | null
-  second_last_name: string | null
-  business_name: string | null
-  is_educational_institution: number
+  middle_name: string | null
+  first_surname: string | null
+  second_surname: string | null
+  identification_type_id: number | null
+  identification_number: string | null
+  sex: string | null
+  birth_date: string | null
+  address: string | null
+  state_id: number | null
+  city_id: number | null
+  head_of_house: boolean
+  household_id: number | null
+  user_id: number | null
+  sector_type_id: number | null
+  sector_id: number | null
+  phone: string | null
+  email: string | null
+  blood_type: string | null
+  marital_status: string | null
   created_at: string | null
   updated_at: string | null
-  identification_type_id: number | null
-  identification_type: IType | null
-  profile_id: number | null
-  profile: IProfile
-  location_info_id: number | null
-  location_info: ILocationInfo
-  work_experiences: IWorkExperience[]
-  educations: IEducation[]
-  person_economic_activities: IPersonEconomicActivity[]
-  offers: Offer[]
-  user_id: number | null
-  user: IUser | null
+
+  identificationType: IIdentificationType | null
+  household: IHousehold | null
+  relationships: IRelationship[] | []
+  cie10s: ICie10[] | []
+  sectorType: ISectorType | null
+  sector: ISector | null
+  creator: IUser | null
 }

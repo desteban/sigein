@@ -33,9 +33,6 @@
   const page = ref<number>(1)
   const loading = ref<boolean>(false)
 
-  // const personItems: WritableComputedRef<IPerson[]> = computed(() => {
-  //   return props.initialItems
-  // })
   const personItems = ref<IPerson[]>(props.initialItems)
 
   const model: WritableComputedRef<IPerson | string | null> = computed({

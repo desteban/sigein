@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', config => {
-        config.plugins.push(vuetify({ autoImport: true }))
+        if (config.plugins) config.plugins.push(vuetify({ autoImport: true }))
       })
     },
     [

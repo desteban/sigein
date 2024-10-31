@@ -2,7 +2,7 @@
   const localePath = useLocalePath()
   const authStore = useAuthStore()
   const { snackbar } = useSnackbar()
-  const { getImageByName } = useTypes()
+  const { getImageByName } = useTypesData()
   const router = useRouter()
 
   const user = computed(() => authStore.user)

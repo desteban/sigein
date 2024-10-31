@@ -1,8 +1,7 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { HelpIcon, ChevronDownIcon } from 'vue-tabler-icons'
   import QuickLinks from './QuickLinks.vue'
   import AppsLink from './AppsLink.vue'
-  import { HelpIcon, ChevronDownIcon } from 'vue-tabler-icons'
 </script>
 
 <template>
@@ -10,7 +9,7 @@
   <!-- mega menu DD -->
   <!-- ---------------------------------------------- -->
   <v-menu open-on-hover :close-on-content-click="false">
-    <template v-slot:activator="{ props }">
+    <template #activator="{ props }">
       <v-btn
         class="hidden-sm-and-down"
         rounded="sm"

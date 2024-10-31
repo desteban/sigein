@@ -1,34 +1,22 @@
 <script setup lang="ts">
   const appsLink = [
     {
-      title: 'Dashboard',
-      subtext: 'Dashboard',
-      href: '/dashboard',
-      avatar: '@/assets/images/products/1.jpg'
+      title: 'Inicio',
+      subtext: 'Página de inicio',
+      href: '/',
+      avatar: 'mdi-home-outline'
     },
     {
-      title: 'Users',
-      subtext: 'Users',
+      title: 'Usuarios',
+      subtext: 'Gestión de usuarios',
       href: '/users',
-      avatar: '@/assets/images/products/2.jpg'
+      avatar: 'mdi-account-group-outline'
     },
     {
-      title: 'Roles',
-      subtext: 'Roles',
+      title: 'Roles y permisos',
+      subtext: 'Gestión de roles',
       href: '/roles',
-      avatar: '@/assets/images/products/3.jpg'
-    },
-    {
-      title: 'Permissions',
-      subtext: 'Permissions',
-      href: '/permissions',
-      avatar: '@/assets/images/products/4.jpg'
-    },
-    {
-      title: 'Settings',
-      subtext: 'Settings',
-      href: '/settings',
-      avatar: '@/assets/images/products/1.jpg'
+      avatar: 'mdi-account-switch-outline'
     }
   ]
 </script>
@@ -37,18 +25,18 @@
   <!-- apps link -->
   <!-- ---------------------------------------------- -->
   <v-row>
-    <v-col v-for="(item, i) in appsLink" :key="i" cols="12" lg="6">
+    <v-col v-for="(item, i) in appsLink" :key="i" cols="12">
       <router-link
         :to="item.href"
         class="text-decoration-none custom-text-primary"
       >
         <div class="d-flex align-center">
           <v-avatar size="45" color="grey100" rounded="md">
-            <v-img
-              :src="item.avatar"
+            <v-icon
+              :icon="item.avatar"
               width="24"
               height="24"
-              :alt="item.avatar"
+              color="primary"
             />
           </v-avatar>
           <div class="ml-3">

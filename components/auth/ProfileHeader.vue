@@ -11,7 +11,7 @@
   const localePath = useLocalePath()
   const authStore = useAuthStore()
   const { snackbar } = useSnackbar()
-  const { getImageByName } = useTypes()
+  const { getImageByName } = useTypesData()
   const router = useRouter()
 
   const user = computed(() => authStore.user)
@@ -19,16 +19,17 @@
     () => user.value?.person?.profile?.avatar || getImageByName('defaultUser')
   )
 
+  const openMenu = ref(false)
   const loading = ref(false)
   const ProfileHeader: ComputedRef<IProfile[]> = computed(() => [
-    {
-      avatar: 'mdi-account-tie',
-      title: 'My profile',
-      subtitle: 'My personal information',
-      href: user.value?.person.id
-        ? `/profile/${user.value.person.id}/info`
-        : '/profile/info'
-    },
+    // {
+    //   avatar: 'mdi-account-tie',
+    //   title: 'My profile',
+    //   subtitle: 'My personal information',
+    //   href: user.value?.person.id
+    //     ? `/profile/${user.value.person.id}/info`
+    //     : '/profile/info'
+    // },
     {
       avatar: 'mdi-shield-refresh',
       title: 'Change Password',
@@ -36,6 +37,12 @@
       href: '/auth/change-password'
     }
   ])
+
+  const closeMenu = () => {
+    setTimeout(() => {
+      openMenu.value = false
+    }, 200)
+  }
 
   const logout = () => {
     loading.value = true
@@ -54,7 +61,11 @@
 </script>
 
 <template>
-  <v-menu :close-on-content-click="false" class="profile_popup">
+  <v-menu
+    v-model="openMenu"
+    :close-on-content-click="false"
+    class="profile_popup"
+  >
     <template #activator="{ props }">
       <v-btn class="custom-hover-primary" variant="text" v-bind="props" icon="">
         <v-avatar size="35">
@@ -97,6 +108,7 @@
             :key="item.title"
             class="py-4 px-8 custom-text-primary"
             :to="localePath(item.href)"
+            @click="closeMenu"
           >
             <template #prepend>
               <v-avatar size="48" color="lightprimary" rounded="md">

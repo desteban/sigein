@@ -1,9 +1,10 @@
 <script setup lang="ts">
-  import VerticalSidebarVue from './full/vertical-sidebar/VerticalSidebar.vue'
+  // import VerticalSidebarVue from './full/vertical-sidebar/VerticalSidebar.vue'
   import VerticalHeaderVue from './full/vertical-header/VerticalHeader.vue'
-  import HorizontalHeader from './full/horizontal-header/HorizontalHeader.vue'
-  import HorizontalSidebar from './full/horizontal-sidebar/HorizontalSidebar.vue'
+  // import HorizontalHeader from './full/horizontal-header/HorizontalHeader.vue'
+  // import HorizontalSidebar from './full/horizontal-sidebar/HorizontalSidebar.vue'
   import Customizer from './full/customizer/Customizer.vue'
+
   const customizer = useCustomizerStore()
 </script>
 
@@ -30,9 +31,9 @@
         <Customizer />
       </v-navigation-drawer>
       <VerticalHeaderVue v-if="!customizer.setHorizontalLayout" />
-      <VerticalSidebarVue v-if="!customizer.setHorizontalLayout" />
-      <HorizontalHeader v-if="customizer.setHorizontalLayout" />
-      <HorizontalSidebar v-if="customizer.setHorizontalLayout" />
+      <!--      <VerticalSidebarVue v-if="!customizer.setHorizontalLayout" />-->
+      <!--      <HorizontalHeader v-if="customizer.setHorizontalLayout" />-->
+      <!--      <HorizontalSidebar v-if="customizer.setHorizontalLayout" />-->
 
       <v-main>
         <v-container fluid class="page-wrapper pb-sm-15 pb-10">

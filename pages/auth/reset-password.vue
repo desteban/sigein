@@ -1,17 +1,17 @@
 <script setup lang="ts">
   import Logo from '@/layouts/full/logo/LogoAuth.vue'
   import ResetPasswordForm from '@/components/auth/ResetPasswordForm.vue'
-  
+
   definePageMeta({
-    layout: 'blank',
+    layout: 'blank'
   })
-  
+
   const localePath = useLocalePath()
 </script>
 
 <template>
-  <div class="pa-3">
-    <v-row class="h-100vh mh-100 auth">
+  <div>
+    <v-row no-gutters class="h-100vh mh-100 auth">
       <v-col
         cols="12"
         lg="8"
@@ -19,12 +19,7 @@
         xxl="9"
         class="d-lg-flex align-center justify-center authentication position-relative"
       >
-        <div class="auth-header pt-sm-6 pt-2 px-sm-6 px-3 pb-sm-6 pb-0">
-          <div class="position-relative">
-            <Logo />
-          </div>
-        </div>
-        <div class="">
+        <div>
           <img
             src="@/assets/images/backgrounds/login-bg.svg"
             class="position-relative d-none d-lg-flex"
@@ -40,6 +35,9 @@
         class="d-flex align-center justify-center bg-surface"
       >
         <div class="pa-sm-7 pa-4">
+          <div class="d-flex justify-center mb-6">
+            <Logo style="width: 300px" />
+          </div>
           <h2 class="text--darken-2 text-h4 font-weight-semibold">
             Reset Your Password
           </h2>

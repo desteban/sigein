@@ -1,18 +1,8 @@
 {
-  "Sample Page": "Sample Page",
-  "Menu Level": "Menu level",
-  "Level 1": "Level 1",
-  "Level 2": "Level 2",
-  "Level 3": "Level 3",
-  "Disabled": "Disabled",
-  "Sub Caption": "Sub Caption",
-  "Outlined": "Outlined",
-  "External Link": "External Link",
-  "Chip": "Chip",
   "users": {
     "list": {
       "title": "Users",
-      "subtitle": "List of Users",
+      "subtitle": "User management",
       "add": "Add User",
       "search": "Search by name or email",
       "edit": "Edit",
@@ -32,8 +22,8 @@
   },
   "roles": {
     "list": {
-      "title": "Roles",
-      "subtitle": "List of Roles",
+      "title": "Roles and permissions",
+      "subtitle": "Role management",
       "add": "Add Role",
       "search": "Search by name",
       "edit": "Edit",
