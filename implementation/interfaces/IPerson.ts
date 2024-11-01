@@ -31,11 +31,11 @@ export interface IPerson {
   created_at: string | null
   updated_at: string | null
 
-  identificationType: IIdentificationType | null
+  identification_type: IIdentificationType | null
   household: IHousehold | null
   relationships: IRelationship[] | []
   cie10s: ICie10[] | []
-  sectorType: ISectorType | null
+  sector_type: ISectorType | null
   sector: ISector | null
   creator: IUser | null
 }

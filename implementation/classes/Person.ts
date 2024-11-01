@@ -5,6 +5,7 @@ import type { IRelationship } from '~/implementation/interfaces/IRelationship'
 import type { ICie10 } from '~/implementation/interfaces/ICie10'
 import type { ISectorType } from '~/implementation/interfaces/ISectorType'
 import type { ISector } from '~/implementation/interfaces/ISector'
+import type { IUser } from '~/implementation/interfaces/IUser'
 
 export class Person implements IPerson {
   id: number | null
@@ -54,7 +55,7 @@ export class Person implements IPerson {
   updated_at: string | null
 
   // Relaciones
-  identificationType: IIdentificationType | null
+  identification_type: IIdentificationType | null
 
   household: IHousehold | null
 
@@ -62,7 +63,7 @@ export class Person implements IPerson {
 
   cie10s: ICie10[] | []
 
-  sectorType: ISectorType | null
+  sector_type: ISectorType | null
 
   sector: ISector | null
 
@@ -94,21 +95,12 @@ export class Person implements IPerson {
     this.updated_at = data.updated_at ?? null
 
     // Asignación de relaciones
-    this.identificationType = data.identificationType ?? null
+    this.identification_type = data.identification_type ?? null
     this.household = data.household ?? null
     this.relationships = data.relationships ?? []
     this.cie10s = data.cie10s ?? []
-    this.sectorType = data.sectorType ?? null
+    this.sector_type = data.sector_type ?? null
     this.sector = data.sector ?? null
     this.creator = data.creator ?? null
-  }
-
-  // Método helper para obtener nombre completo
-  get fullName(): string {
-    const names = [this.first_name, this.middle_name].filter(Boolean).join(' ')
-    const surnames = [this.first_surname, this.second_surname]
-      .filter(Boolean)
-      .join(' ')
-    return `${names} ${surnames}`.trim()
   }
 }

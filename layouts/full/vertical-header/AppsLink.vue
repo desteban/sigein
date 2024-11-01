@@ -7,6 +7,12 @@
       avatar: 'mdi-home-outline'
     },
     {
+      title: 'Personas',
+      subtext: 'Gestión de personas',
+      href: '/persons',
+      avatar: 'mdi-account-group-outline'
+    },
+    {
       title: 'Usuarios',
       subtext: 'Gestión de usuarios',
       href: '/users',

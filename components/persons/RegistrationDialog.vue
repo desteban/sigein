@@ -6,6 +6,7 @@
   import type { IIdentificationType } from '~/implementation/interfaces/IIdentificationType'
   import type { IState } from '~/implementation/interfaces/IState'
   import type { ICity } from '~/implementation/interfaces/ICity'
+  import type { ISector } from '~/implementation/interfaces/ISector'
 
   const props = withDefaults(
     defineProps<{
@@ -22,14 +23,25 @@
 
   const api = useApi()
   const { snackbar } = useSnackbar()
-  const { getStates, getCities } = useTypesDataData()
+  const {
+    getStates,
+    getCities,
+    getSectors,
+    getSectorTypes,
+    getBloodTypes,
+    getMaritalStatus,
+    getIdentificationTypes
+  } = useTypesData()
 
   const entityForm = ref<FormContext>()
   const loading = ref(false)
   const model = ref<IPerson>(new Person())
-  const identificationTypes = ref<IIdentificationType[]>([])
   const states = ref<IState[]>([])
   const cities = ref<ICity[]>([])
+  const sectors = ref<ISector[]>([])
+  const bloodTypes = ref<string[]>([])
+  const maritalStatus = ref<string[]>([])
+  const identificationTypes = ref<IIdentificationType[]>([])
 
   const dialog: WritableComputedRef<boolean> = computed({
     get() {
@@ -46,7 +58,7 @@
       api
         .get(`persons/${props.personId}`)
         .then(({ data }) => {
-          model.value = data
+          model.value = new Person(data)
         })
         .catch((error: any) => {
           snackbar({ type: 'error', error })
@@ -60,11 +72,16 @@
   }
 
   const getTypesProperties = async () => {
-    identificationTypes.value = await getTypes('identification_types')
+    if (!bloodTypes.value.length) bloodTypes.value = await getBloodTypes()
+    if (!maritalStatus.value.length)
+      maritalStatus.value = await getMaritalStatus()
+    if (!identificationTypes.value.length)
+      identificationTypes.value = await getIdentificationTypes()
+    if (!states.value.length) states.value = await getStates()
   }
 
   const openDialog = () => {
-    if (!identificationTypes.value.length) getTypesProperties()
+    getTypesProperties()
     getItem()
   }
 
@@ -123,7 +140,7 @@
       <v-card-title class="bg-primary">
         <div class="d-flex justify-space-between">
           <h4 class="text-h5 align-self-center">
-            {{ props.personId ? 'Editar' : 'Agregar' }} Información personal
+            {{ props.personId ? 'Editar' : 'Crear' }} Información personal
           </h4>
           <v-btn variant="outlined" icon="mdi-close" @click="cancelForm" />
         </div>
@@ -132,22 +149,36 @@
       <v-card-text class="pa-4">
         <VeeForm ref="entityForm">
           <v-row>
-            <v-col cols="12" class="d-flex flex-column">
-              <v-label
-                class="text-subtitle-1 font-weight-semibold pb-2 pl-2 text-lightText"
+            <v-col cols="12" class="d-flex flex-column align-start">
+              <VeeField
+                v-slot="{ errors }"
+                v-model="model.sex"
+                name="Sexo"
+                rules="required"
               >
-                Tipo de persona
-              </v-label>
-              <v-btn-toggle
-                v-model="model.type"
-                mandatory
-                color="primary"
-                group
-                variant="outlined"
-              >
-                <v-btn value="natural"> Natural </v-btn>
-                <v-btn value="legal"> Jurídica </v-btn>
-              </v-btn-toggle>
+                <v-label
+                  class="text-subtitle-1 font-weight-semibold pb-2 pl-2 text-lightText"
+                >
+                  Sexo
+                </v-label>
+                <v-btn-toggle
+                  v-model="model.sex"
+                  mandatory
+                  color="primary"
+                  group
+                  variant="outlined"
+                >
+                  <v-btn value="M"> Masculino </v-btn>
+                  <v-btn value="F"> Femenino </v-btn>
+                </v-btn-toggle>
+                <div
+                  v-if="errors.length"
+                  class="v-messages px-4 pt-1"
+                  style="color: #fa896b"
+                >
+                  {{ errors[0] }}
+                </div>
+              </VeeField>
             </v-col>
           </v-row>
           <v-row>
@@ -172,8 +203,18 @@
                 rules="required"
               />
             </v-col>
+            <v-col cols="12" md="6">
+              <InputSelect
+                v-model="model.identification_type_id"
+                :items="bloodTypes"
+                label="Tipo de identificación"
+                placeholder="Tipo de identificación"
+                name="Tipo de identificación"
+                rules="required"
+              />
+            </v-col>
           </v-row>
-          <v-row v-if="model.type === 'natural'">
+          <v-row>
             <v-col cols="12" md="6">
               <InputText
                 v-model="model.first_name"
@@ -206,26 +247,6 @@
                 label="Segundo apellido"
                 placeholder="Segundo apellido"
                 name="Segundo apellido"
-              />
-            </v-col>
-          </v-row>
-          <v-row v-else>
-            <v-col cols="12">
-              <InputText
-                v-model="model.business_name"
-                label="Razón social"
-                placeholder="Razón social"
-                name="Razón social"
-                rules="required"
-              />
-            </v-col>
-            <v-col cols="12">
-              <v-switch
-                v-model="model.is_educational_institution"
-                label="Es una institución educativa"
-                :inset="true"
-                color="success"
-                hide-details
               />
             </v-col>
           </v-row>

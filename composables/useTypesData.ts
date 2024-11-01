@@ -5,13 +5,13 @@ import type { IState } from '~/implementation/interfaces/IState'
 import type { ICity } from '~/implementation/interfaces/ICity'
 import type { IStringIndexed } from '~/implementation/interfaces/IStringIndexed'
 import type { ISector } from '~/implementation/interfaces/ISector'
-import type { ISectorType } from '~/implementation/interfaces/ISectorType'
+import type { IIdentificationType } from '~/implementation/interfaces/IIdentificationType'
 
 export function useTypesData() {
   const { snackbar } = useSnackbar()
   const api = useApi()
 
-  const getStates = async (countryId: number = 0): Promise<IState[]> => {
+  const getStates = async (countryId: number = 1): Promise<IState[]> => {
     if (!countryId) return []
     return new Promise(resolve => {
       api
@@ -53,34 +53,43 @@ export function useTypesData() {
     })
   }
 
-  const getBloodTypes = (): IStringIndexed[] => {
-    return [
-      { value: 'A+', text: 'A+' },
-      { value: 'A-', text: 'A-' },
-      { value: 'B+', text: 'B+' },
-      { value: 'B-', text: 'B-' },
-      { value: 'AB+', text: 'AB+' },
-      { value: 'AB-', text: 'AB-' },
-      { value: 'O+', text: 'O+' },
-      { value: 'O-', text: 'O-' }
-    ]
+  const getBloodTypes = async (): Promise<string[]> => {
+    return new Promise(resolve => {
+      api
+        .get('blood-types')
+        .then((res: AxiosResponse) => resolve(res.data || []))
+        .catch((error: any) => {
+          snackbar({ type: 'error', error })
+          resolve([])
+        })
+    })
   }
 
-  const getMaritalStatus = (): IStringIndexed[] => {
-    return [
-      { value: 'Soltero', text: 'Soltero' },
-      { value: 'Casado', text: 'Casado' },
-      { value: 'Divorciado', text: 'Divorciado' },
-      { value: 'Viudo', text: 'Viudo' },
-      { value: 'Concubinato', text: 'Concubinato' },
-      {
-        value: 'Separación en proceso judicial',
-        text: 'Separación en proceso judicial'
-      }
-    ]
+  const getMaritalStatus = async (): Promise<string[]> => {
+    return new Promise(resolve => {
+      api
+        .get('marital-status')
+        .then((res: AxiosResponse) => resolve(res.data || []))
+        .catch((error: any) => {
+          snackbar({ type: 'error', error })
+          resolve([])
+        })
+    })
   }
 
-  const getSectorTypes = (): ISectorType[] => {
+  const getIdentificationTypes = async (): Promise<IIdentificationType[]> => {
+    return new Promise(resolve => {
+      api
+        .get('identification-types')
+        .then((res: AxiosResponse) => resolve(res.data || []))
+        .catch((error: any) => {
+          snackbar({ type: 'error', error })
+          resolve([])
+        })
+    })
+  }
+
+  const getSectorTypes = (): IStringIndexed[] => {
     return [
       { value: 1, text: 'Barrio' },
       { value: 2, text: 'Vereda' },
@@ -101,6 +110,7 @@ export function useTypesData() {
     getBloodTypes,
     getMaritalStatus,
     getSectorTypes,
+    getIdentificationTypes,
     getImageByName
   }
 }
