@@ -94,6 +94,31 @@
           </v-item>
         </v-col>
       </v-item-group>
+      <h6 class="text-h6 mt-11 mb-2">Ancho del contenido</h6>
+      <v-btn-toggle
+        v-model="customizer.boxed"
+        color="primary"
+        class="my-2 btn-group-custom gap-3"
+        rounded="0"
+        group
+      >
+        <v-btn :value="true" variant="text" elevation="9" class="rounded-md">
+          <LayoutDistributeVerticalIcon
+            stroke-width="1.5"
+            size="21"
+            class="mr-2 icon"
+          />
+          Centro
+        </v-btn>
+        <v-btn :value="false" variant="text" elevation="9" class="rounded-md">
+          <LayoutDistributeHorizontalIcon
+            stroke-width="1.5"
+            size="21"
+            class="mr-2 icon"
+          />
+          Total
+        </v-btn>
+      </v-btn-toggle>
     </div>
   </perfect-scrollbar>
 </template>

@@ -6,6 +6,7 @@ import type { ICity } from '~/implementation/interfaces/ICity'
 import type { IStringIndexed } from '~/implementation/interfaces/IStringIndexed'
 import type { ISector } from '~/implementation/interfaces/ISector'
 import type { IIdentificationType } from '~/implementation/interfaces/IIdentificationType'
+import type { ISectorType } from '~/implementation/interfaces/ISectorType'
 
 export function useTypesData() {
   const { snackbar } = useSnackbar()
@@ -89,12 +90,16 @@ export function useTypesData() {
     })
   }
 
-  const getSectorTypes = (): IStringIndexed[] => {
-    return [
-      { value: 1, text: 'Barrio' },
-      { value: 2, text: 'Vereda' },
-      { value: 3, text: 'Corregimiento' }
-    ]
+  const getSectorTypes = async (): Promise<ISectorType[]> => {
+    return new Promise(resolve => {
+      api
+        .get('sector-types')
+        .then((res: AxiosResponse) => resolve(res.data || []))
+        .catch((error: any) => {
+          snackbar({ type: 'error', error })
+          resolve([])
+        })
+    })
   }
 
   const getImageByName = (name: string): string => {

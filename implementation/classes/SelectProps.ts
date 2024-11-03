@@ -187,7 +187,7 @@ export class SelectProps implements ISelectProps {
     this.validateOn = data.validateOn ?? 'input'
     this.variant = data.variant ?? 'outlined'
     // extra properties
-    this.labelOutside = data.labelOutside ?? true
+    this.labelOutside = data.labelOutside ?? false
     this.objectValue = data.objectValue
   }
 }

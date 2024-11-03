@@ -4,9 +4,10 @@
   import DataTable from '~/components/dataTable/DataTable.vue'
   import type { IHeader } from '~/components/dataTable/IHeader'
   import { Header } from '@/components/dataTable/Header'
-  import type { IUser } from '@/implementation/interfaces/IUser'
-  import { User } from '@/implementation/classes/User'
+  import type { IPerson } from '@/implementation/interfaces/IPerson'
+  import { Person } from '@/implementation/classes/Person'
   import RegistrationDialog from '@/components/persons/RegistrationDialog.vue'
+  import DetailDialog from '@/components/persons/DetailDialog.vue'
   import DialogDelete from '~/components/DialogDelete.vue'
 
   const headers = ref<IHeader[]>([
@@ -16,19 +17,24 @@
     new Header({ title: 'Actions', key: 'actions', align: 'end' })
   ])
   const tableRef = ref<InstanceType<typeof DataTable> | null>(null)
-  const selectedItem = ref<IUser>(new User())
+  const selectedItem = ref<IPerson>(new Person())
   const registerDialog = ref<boolean>(false)
   const deleteDialog = ref<boolean>(false)
+  const detailDialog = ref<boolean>(false)
 
-  const editItem = (item: IUser) => {
+  const detailItem = (item: IPerson) => {
+    selectedItem.value = item
+    detailDialog.value = true
+  }
+  const editItem = (item: IPerson) => {
     selectedItem.value = item
     registerDialog.value = true
   }
   const createItem = () => {
-    selectedItem.value = new User()
+    selectedItem.value = new Person()
     registerDialog.value = true
   }
-  const deleteItem = (item: IUser) => {
+  const deleteItem = (item: IPerson) => {
     selectedItem.value = item
     deleteDialog.value = true
   }
@@ -36,8 +42,8 @@
     tableRef.value?.loadItems()
   }
 
-  const savedItem = (saved: number = 0) => {
-    if (saved) tableRef.value?.loadItems()
+  const savedItem = (saved: IPerson) => {
+    if (saved.id) tableRef.value?.loadItems()
   }
 </script>
 
@@ -131,16 +137,23 @@
         </template>
         <template #[`item.actions`]="{ item }">
           <ActionButton
+            icon="mdi-cog"
+            color="info"
+            text="Detalle"
+            class="ml-2"
+            @click="detailItem(item)"
+          />
+          <ActionButton
             icon="mdi-pencil"
             color="warning"
-            :text="$t('users.list.edit')"
+            text="Editar"
             class="ml-2"
             @click="editItem(item)"
           />
           <ActionButton
             icon="mdi-delete"
             color="error"
-            :text="$t('users.list.delete')"
+            text="Borrar"
             class="ml-2"
             @click="deleteItem(item)"
           />
@@ -150,19 +163,20 @@
   </v-row>
   <RegistrationDialog
     v-model="registerDialog"
-    :item-id="selectedItem.id"
+    :person-id="selectedItem.id"
+    @saved="saved => savedItem(saved)"
+  />
+  <DetailDialog
+    v-model="detailDialog"
+    :person-id="selectedItem.id"
     @saved="saved => savedItem(saved)"
   />
   <DialogDelete
     v-model="deleteDialog"
-    :title="$t('users.delete.title')"
-    :text="
-      $t('users.delete.text', { name: `<strong>${selectedItem.name}</strong>` })
-    "
-    :route="`users/${selectedItem.id}`"
-    :success-message="
-      $t('users.delete.successMessage', { name: selectedItem.name })
-    "
+    title="Borrar persona"
+    :text="`Se borrara el registro de <strong>${selectedItem.first_name} ${selectedItem.first_surname}</strong></br> ¿Está seguro de continuar?`"
+    :route="`persons/${selectedItem.id}`"
+    :success-message="`El registro de <strong>${selectedItem.first_name} ${selectedItem.first_surname}</strong> ha sido eliminado`"
     @deleted="deletedItem"
   />
 </template>

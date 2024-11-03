@@ -153,6 +153,6 @@ export class TextProps implements ITextProps {
     this.decimal = data.decimal ?? false
     this.upperCase = data.upperCase ?? false
     this.lowerCase = data.lowerCase ?? false
-    this.labelOutside = data.labelOutside ?? true
+    this.labelOutside = data.labelOutside ?? false
   }
 }
