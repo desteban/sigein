@@ -63,5 +63,10 @@ export default defineNuxtConfig({
         }
       ]
     }
+  },
+  runtimeConfig: {
+    public: {
+      urlBackEnd: process.env.BACKEND_URL || 'http://localhost:8000'
+    }
   }
 })

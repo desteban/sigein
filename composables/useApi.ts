@@ -1,11 +1,13 @@
 import axios from 'axios'
 // import { useCookie } from '#app/composables/cookie'
 // import { useEncryption } from '~/composables/useEncryption'
-import { useAuthStore } from "~/stores/auth";
+import { useRuntimeConfig } from '#app'
+import { useAuthStore } from '~/stores/auth'
 
 export const useApi = () => {
   const auth = useAuthStore()
-  const baseURL = 'http://localhost:8000/api/'
+  const config = useRuntimeConfig()
+  const baseURL = `${config.public.urlBackEnd}/api/`
   // const { decryptInformation } = useEncryption()
   // const token = decryptInformation(useCookie('access_token').value)
   // console.log('la token value', token)
