@@ -1,7 +1,8 @@
-export interface IState {
+export interface ISurveyType {
   id: number
   name: string
-  country_id: number
+  description?: string | null
+  is_active: boolean
   created_at: string | null
   updated_at: string | null
 }

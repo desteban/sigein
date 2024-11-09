@@ -7,6 +7,8 @@ import type { IStringIndexed } from '~/implementation/interfaces/IStringIndexed'
 import type { ISector } from '~/implementation/interfaces/ISector'
 import type { IIdentificationType } from '~/implementation/interfaces/IIdentificationType'
 import type { ISectorType } from '~/implementation/interfaces/ISectorType'
+import type { ISurveyType } from '~/implementation/interfaces/ISurveyType'
+import type { ISurveyRejectionReason } from '~/implementation/interfaces/ISurveyRejectionReason'
 
 export function useTypesData() {
   const { snackbar } = useSnackbar()
@@ -102,6 +104,44 @@ export function useTypesData() {
     })
   }
 
+  const getSurveyRejectionReason = async (): Promise<
+    ISurveyRejectionReason[]
+  > => {
+    return new Promise(resolve => {
+      api
+        .get('survey-rejection-reasons')
+        .then((res: AxiosResponse) => resolve(res.data || []))
+        .catch((error: any) => {
+          snackbar({ type: 'error', error })
+          resolve([])
+        })
+    })
+  }
+
+  const getSurveyTypes = async (): Promise<ISurveyType[]> => {
+    return new Promise(resolve => {
+      api
+        .get('survey-types')
+        .then((res: AxiosResponse) => resolve(res.data || []))
+        .catch((error: any) => {
+          snackbar({ type: 'error', error })
+          resolve([])
+        })
+    })
+  }
+
+  const getSurveyStatus = async (): Promise<string[]> => {
+    return new Promise(resolve => {
+      api
+        .get('survey-status')
+        .then((res: AxiosResponse) => resolve(res.data || []))
+        .catch((error: any) => {
+          snackbar({ type: 'error', error })
+          resolve([])
+        })
+    })
+  }
+
   const getImageByName = (name: string): string => {
     if (name === 'defaultBanner') return profileBg
     if (name === 'defaultUser') return UserImage
@@ -116,6 +156,9 @@ export function useTypesData() {
     getMaritalStatus,
     getSectorTypes,
     getIdentificationTypes,
+    getSurveyRejectionReason,
+    getSurveyTypes,
+    getSurveyStatus,
     getImageByName
   }
 }

@@ -5,6 +5,9 @@ import type { IRelationship } from '~/implementation/interfaces/IRelationship'
 import type { ICie10 } from '~/implementation/interfaces/ICie10'
 import type { ISectorType } from '~/implementation/interfaces/ISectorType'
 import type { ISector } from '~/implementation/interfaces/ISector'
+import type { ICity } from '~/implementation/interfaces/ICity'
+import type { IState } from '~/implementation/interfaces/IState'
+import type { ISurvey } from '~/implementation/interfaces/ISurvey'
 
 export interface IPerson {
   id: number | null
@@ -12,6 +15,7 @@ export interface IPerson {
   middle_name: string | null
   first_surname: string | null
   second_surname: string | null
+  full_name: string | null
   identification_type_id: number | null
   identification_number: string | null
   sex: string | null
@@ -31,6 +35,8 @@ export interface IPerson {
   created_at: string | null
   updated_at: string | null
 
+  city: ICity | null
+  state: IState | null
   identification_type: IIdentificationType | null
   household: IHousehold | null
   relationships: IRelationship[] | []
@@ -38,4 +44,5 @@ export interface IPerson {
   sector_type: ISectorType | null
   sector: ISector | null
   creator: IUser | null
+  surveys: ISurvey[] | []
 }

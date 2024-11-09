@@ -1,7 +1,6 @@
-export interface IState {
+export interface ISurveyRejectionReason {
   id: number
-  name: string
-  country_id: number
+  description: string
   created_at: string | null
   updated_at: string | null
 }

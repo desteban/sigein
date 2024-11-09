@@ -6,6 +6,9 @@ import type { ICie10 } from '~/implementation/interfaces/ICie10'
 import type { ISectorType } from '~/implementation/interfaces/ISectorType'
 import type { ISector } from '~/implementation/interfaces/ISector'
 import type { IUser } from '~/implementation/interfaces/IUser'
+import type { ICity } from '~/implementation/interfaces/ICity'
+import type { IState } from '~/implementation/interfaces/IState'
+import type { ISurvey } from '~/implementation/interfaces/ISurvey'
 
 export class Person implements IPerson {
   id: number | null
@@ -17,6 +20,8 @@ export class Person implements IPerson {
   first_surname: string | null
 
   second_surname: string | null
+
+  full_name: string | null
 
   identification_type_id: number | null
 
@@ -55,6 +60,10 @@ export class Person implements IPerson {
   updated_at: string | null
 
   // Relaciones
+  city: ICity | null
+
+  state: IState | null
+
   identification_type: IIdentificationType | null
 
   household: IHousehold | null
@@ -69,12 +78,15 @@ export class Person implements IPerson {
 
   creator: IUser | null
 
+  surveys: ISurvey[] | []
+
   constructor(data: Partial<IPerson> = {}) {
     this.id = data.id ?? null
     this.first_name = data.first_name ?? null
     this.middle_name = data.middle_name ?? null
     this.first_surname = data.first_surname ?? null
     this.second_surname = data.second_surname ?? null
+    this.full_name = data.full_name ?? null
     this.identification_type_id = data.identification_type_id ?? null
     this.identification_number = data.identification_number ?? null
     this.sex = data.sex ?? null
@@ -95,6 +107,8 @@ export class Person implements IPerson {
     this.updated_at = data.updated_at ?? null
 
     // Asignación de relaciones
+    this.city = data.city ?? null
+    this.state = data.state ?? null
     this.identification_type = data.identification_type ?? null
     this.household = data.household ?? null
     this.relationships = data.relationships ?? []
@@ -102,5 +116,6 @@ export class Person implements IPerson {
     this.sector_type = data.sector_type ?? null
     this.sector = data.sector ?? null
     this.creator = data.creator ?? null
+    this.surveys = data.surveys ?? []
   }
 }

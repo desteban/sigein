@@ -11,8 +11,8 @@
   const router = useRouter()
   const checkbox = ref(false)
   const loading = ref(false)
-  const password = ref('Isabella01051604')
-  const username = ref('sandovalcarlosaugusto@gmail.com')
+  const password = ref('')
+  const username = ref('')
   const defaultForm = ref<FormContext>()
 
   const login = () => {

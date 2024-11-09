@@ -1,5 +1,5 @@
 export interface ICity {
-  id: number | null
+  id: number
   name: string
   state_id: number
   created_at: string | null

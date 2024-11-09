@@ -22,7 +22,9 @@
     v-model="model"
     class="align-center justify-center"
     :contained="props.contained"
-    :theme="overlayColor || customizerStore.isDarkTheme ? 'dark' : 'light'"
+    :theme="
+      props.overlayColor || customizerStore.isDarkTheme ? 'dark' : 'light'
+    "
     persistent
   >
     <v-row justify="center">
